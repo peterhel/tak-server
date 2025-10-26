@@ -41,7 +41,8 @@ dependencies {
 // protobuf code generation step
 protobuf {
   protoc {
-    artifact = 'com.google.protobuf:protoc:3.0.0'
+    // Use system protoc instead of downloading
+    path = '/usr/bin/protoc'
   }
   plugins {
     grpc {
