@@ -39,14 +39,14 @@ dependencies {
 }
 
 // protobuf code generation step
+// protobuf code generation step
 protobuf {
   protoc {
-    // Use system protoc instead of downloading
-    path = '/usr/bin/protoc'
+    artifact = 'com.google.protobuf:protoc:3.0.0:linux-x86_64'
   }
   plugins {
     grpc {
-      artifact = 'io.grpc:protoc-gen-grpc-java:1.0.2'
+      artifact = 'io.grpc:protoc-gen-grpc-java:1.0.2:linux-x86_64'
     }
   }
   generateProtoTasks {
