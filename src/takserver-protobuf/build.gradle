@@ -42,21 +42,20 @@ dependencies {
 // protobuf code generation step
 protobuf {
   protoc {
+    // Use system protoc instead of downloading old 2016 binary
     path = '/usr/bin/protoc'
   }
-  // Don't use grpc plugin - generate manually or skip
+  plugins {
+    grpc {
+      artifact = 'io.grpc:protoc-gen-grpc-java:1.76.0:linux-x86_64'
+    }
+  }
   generateProtoTasks {
-    all().each { task ->
-      task.builtins {
-        remove java
-      }
-      task.plugins {
-        remove grpc
-      }
-      task.builtins {
-        java {
-          option "lite"
-        }
+    all()*.plugins {
+      grpc {
+        // To generate deprecated interfaces and static bindService method,
+        // turn the enable_deprecated option to true below:
+        option 'enable_deprecated=false'
       }
     }
   }
